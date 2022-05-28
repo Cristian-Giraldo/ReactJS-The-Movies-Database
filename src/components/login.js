@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import {useNavigate} from 'react-router-dom';
-// import swalAlert from '@sweetalert/with-react'
+ import swalAlert from '@sweetalert/with-react'
 
 function Login(){
 
@@ -31,20 +31,21 @@ function Login(){
             return
         }
         // Solicitud post a la API
-        console.log('Ok, estamos listos para enviar la infomación');
+       console.log('Ok, estamos listos para enviar la infomación');
+    //    https://jsonplaceholder.typicode.com/users
         axios
-            .post('https://jsonplaceholder.typicode.com/users',{email,password})
+            .post('http://challenge-react.alkemy.org',{email,password})
             .then(res=>{ 
-                
                 
                 console.log(res.data); //Tokens devulto por la API
                 //proceso para guardar el token o objeto devuelto por la APi en el localStore para realizar manipulaciones a futuro
                 const tokenRecibido = res.data;
                 const tokenInString = JSON.stringify(tokenRecibido);
                 localStorage.setItem('token', tokenInString);
-                return navigate('/listado');    
+                navigate('/listado');    
             })
     }
+
 
     return(
         <>
